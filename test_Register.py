@@ -20,10 +20,10 @@ class UnitTestsRegister(unittest.TestCase):
         zipCode="76324"
         phoneNumber="0213243254"
         ssn="ABC-123"
-        username="FaheemTest2"
+        username="FaheemTest3"
         password="temp123"
         time.sleep(3)
-        print(self.driver.driver.find_elements(By.CSS_SELECTOR, "#loginPanel p a")[1].click())
+        self.driver.driver.find_elements(By.CSS_SELECTOR, "#loginPanel p a")[1].click()
         time.sleep(3)
         self.driver.driver.find_element(By.ID, "customer\.firstName").send_keys(firstName)
         

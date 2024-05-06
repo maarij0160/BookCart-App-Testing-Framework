@@ -12,7 +12,7 @@ class UnitTestsRegister(unittest.TestCase):
 
     def test_validLogin(self):
         self.driver.driver.get(self.driver.url)
-        username="FaheemTest"
+        username="FaheemTest3"
         password="temp123"
         self.driver.driver.find_element(By.CSS_SELECTOR, "#loginPanel .login .input").send_keys(username)
         self.driver.driver.find_elements(By.CSS_SELECTOR, "#loginPanel .login .input")[1].send_keys(password)
@@ -20,7 +20,7 @@ class UnitTestsRegister(unittest.TestCase):
 
         header = self.driver.driver.find_element(By.CSS_SELECTOR,"#rightPanel .title").text
         time.sleep(2)
-        self.assertEqual(header,f"Welcome {username}")
+        self.assertEqual(header,"Accounts Overview")
 
     @classmethod
     def tearDownClass(cls):

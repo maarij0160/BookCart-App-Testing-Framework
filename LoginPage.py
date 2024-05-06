@@ -11,6 +11,6 @@ class LoginPage(WebDriver):
     def Login(self,url,username,password):
         
         self.driver.get(url)
-        self.driver.find_element(By.ID, "username").send_keys(username)
-        self.driver.find_element(By.ID, "password").send_keys(password)
-        self.driver.find_element(By.ID, "login").click()
+        self.driver.find_element(By.NAME, "username").send_keys(username)
+        self.driver.find_element(By.NAME, "password").send_keys(password)
+        self.driver.find_element(By.CLASS_NAME, "button").click()

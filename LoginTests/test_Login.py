@@ -1,7 +1,14 @@
-from config import WebDriver
 from selenium.webdriver.common.by import By
 import unittest
 import time
+from dotenv import load_dotenv, dotenv_values 
+import sys
+import os
+
+load_dotenv() 
+sys.path.insert(1, os.getenv("CONFIGPATH"))
+
+from DriverConfig import WebDriver
 
 class UnitTestsRegister(unittest.TestCase):
     @classmethod
@@ -12,7 +19,7 @@ class UnitTestsRegister(unittest.TestCase):
 
     def test_validLogin(self):
         self.driver.driver.get(self.driver.url)
-        username="FaheemTest3"
+        username="Maarij1"
         password="temp123"
         self.driver.driver.find_element(By.CSS_SELECTOR, "#loginPanel .login .input").send_keys(username)
         self.driver.driver.find_elements(By.CSS_SELECTOR, "#loginPanel .login .input")[1].send_keys(password)

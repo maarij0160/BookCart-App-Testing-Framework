@@ -1,30 +1,41 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from BasePage import WebDriver
+from LoginPage import LoginPage
 from selenium.webdriver.common.by import By
-from time import sleep
 
 
-
-def LoginTest(driver):
+def LoginWithValidUser():
+    
+    WebDriver.initialize_driver()
+    
+    login = LoginPage()
+    login.Login("https://adactinhotelapp.com/","AmirTester","AmirTester")
     
     
-    driver.get("https://adactinhotelapp.com/")
-    driver.find_element(By.ID, "username").send_keys("AmirTester")
-    driver.find_element(By.ID, "password").send_keys("AmirTester")
-    driver.find_element(By.ID, "login").click()
-    
-    welcome_message = driver.find_element(By.CLASS_NAME, "welcome_menu").text
+    welcome_message = WebDriver.driver.find_element(By.CLASS_NAME, "welcome_menu").text
     
     assert welcome_message == "Welcome to Adactin Group of Hotels"
     
-    print("LoginTest Passed")
+    print("Valid Login Test Passed")
     
-    driver.quit()
+    WebDriver.close_driver()
 
 
 
+def LoginWithInvalidUser():
+    
+    WebDriver.initialize_driver()
+    
+    login = LoginPage()
+    login.Login("https://adactinhotelapp.com/","AmirTester","AmirTester123")
+    
+    
+    welcome_message = WebDriver.driver.find_element(By.CLASS_NAME, "auth_error").text
+    
+    assert welcome_message == "Invalid Login details or Your Password might have expired. Click here to reset your password"
+    
+    print("InValid Login Test Passed")
+    
+    WebDriver.driver.quit()
 
-options = Options()
-options.add_experimental_option("excludeSwitches", ["enable-logging"])
-driver = webdriver.Chrome(options=options)
-LoginTest(driver)
+LoginWithValidUser()
+LoginWithInvalidUser()

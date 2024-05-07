@@ -21,35 +21,28 @@ class UnitTestsRegister(unittest.TestCase):
         self.driver.driver.get(self.driver.url)
         firstName="Muhammad"
         lastName="Faheem"
-        street="ABC"
-        city="Karachi"
-        state="Sindh"
-        zipCode="76324"
-        phoneNumber="0213243254"
-        ssn="ABC-123"
-        username="Maarij1"
-        password="temp123"
-        time.sleep(3)
-        self.driver.driver.find_elements(By.CSS_SELECTOR, "#loginPanel p a")[1].click()
-        time.sleep(3)
-        self.driver.driver.find_element(By.ID, "customer\.firstName").send_keys(firstName)
+        username="Maarij321"
+        password="Temp1234"
         
-        self.driver.driver.find_element(By.ID, "customer\.lastName").send_keys(lastName)
-        self.driver.driver.find_element(By.ID, "customer\.address.street").send_keys(street)
-        self.driver.driver.find_element(By.ID, "customer\.address.city").send_keys(city)
-        self.driver.driver.find_element(By.ID, "customer\.address.state").send_keys(state)
-        self.driver.driver.find_element(By.ID, "customer\.address.zipCode").send_keys(zipCode)
-        self.driver.driver.find_element(By.ID, "customer\.phoneNumber").send_keys(phoneNumber)
-        self.driver.driver.find_element(By.ID, "customer\.ssn").send_keys(ssn)
-        self.driver.driver.find_element(By.ID, "customer\.username").send_keys(username)
-        self.driver.driver.find_element(By.ID, "customer\.password").send_keys(password)
-        self.driver.driver.find_element(By.ID, "repeatedPassword").send_keys(password)
         
-        self.driver.driver.find_element(By.CSS_SELECTOR, "#customerForm .form2 tbody tr td .button").click()
-        time.sleep(2)
-        header = self.driver.driver.find_element(By.CSS_SELECTOR,"#rightPanel .title").text
-        self.assertEqual(header,f"Welcome {username}")
-
+        self.driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
+        self.driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[3].click()
+    
+        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='First name']").send_keys(firstName)
+        
+        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Last Name']").send_keys(lastName)
+        
+        
+        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='User name']").send_keys(username)
+        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Password']").send_keys(password)
+        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Confirm Password']").send_keys(password)
+        self.driver.driver.find_element(By.CSS_SELECTOR, "mat-radio-button[value='Male']").click()
+        time.sleep(10)
+        self.driver.driver.find_elements(By.CSS_SELECTOR,"button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base")[0].click()
+        time.sleep(5)
+        header = self.driver.driver.find_element(By.CSS_SELECTOR,"mat-card-title.mat-mdc-card-title.mat-h1").text
+        self.assertEqual(header,'Login')
+       
     @classmethod
     def tearDownClass(cls):
         cls.driver.closeDriver()

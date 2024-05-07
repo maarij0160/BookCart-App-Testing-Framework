@@ -5,7 +5,7 @@ class WebDriver:
     
     def __init__(self) -> None:
         self.driver=None
-        self.url="https://parabank.parasoft.com/parabank/index.htm?ConnType=JDBC"
+        self.url="https://bookcart.azurewebsites.net/"
 
     def initializeDriver(self):    
 

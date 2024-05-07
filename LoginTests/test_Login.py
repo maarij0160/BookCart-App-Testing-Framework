@@ -19,16 +19,19 @@ class UnitTestsRegister(unittest.TestCase):
 
     def test_validLogin(self):
         self.driver.driver.get(self.driver.url)
-        username="Maarij1"
-        password="temp123"
-        self.driver.driver.find_element(By.CSS_SELECTOR, "#loginPanel .login .input").send_keys(username)
-        self.driver.driver.find_elements(By.CSS_SELECTOR, "#loginPanel .login .input")[1].send_keys(password)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "#loginPanel .login .button").click()
-
-        header = self.driver.driver.find_element(By.CSS_SELECTOR,"#rightPanel .title").text
+        username="hello"
+        password="hello123" 
+        
+        self.driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
+        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Username']").send_keys(username)
+        self.driver.driver.find_elements(By.CSS_SELECTOR, "input[placeholder='Password']")[0].send_keys(password)
+        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
         time.sleep(2)
-        self.assertEqual(header,"Accounts Overview")
-
+        header = self.driver.driver.find_element(By.CSS_SELECTOR,"a.mat-mdc-menu-trigger.mdc-button.mdc-button--unelevated.mat-mdc-unelevated-button.mat-primary.mat-mdc-button-base.ng-star-inserted").text
+        
+        header = header.split("\n")[-1]
+        self.assertEqual(header,username)
+     
     @classmethod
     def tearDownClass(cls):
         cls.driver.closeDriver

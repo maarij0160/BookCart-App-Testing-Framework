@@ -4,6 +4,7 @@ import time
 from dotenv import load_dotenv, dotenv_values 
 import sys
 import os
+import pytest
 
 load_dotenv() 
 sys.path.insert(1, os.getenv("CONFIGPATH"))
@@ -17,6 +18,7 @@ class UnitTestsRegister(unittest.TestCase):
 
         cls.driver.initializeDriver()
 
+   
     def test_validLogin(self):
         self.driver.driver.get(self.driver.url)
         username="hello"
@@ -31,6 +33,24 @@ class UnitTestsRegister(unittest.TestCase):
         
         header = header.split("\n")[-1]
         self.assertEqual(header,username)
+        
+    def test_InvalidLogin(self):
+        
+        self.driver.driver.get(self.driver.url)
+        username="hello"
+        password="hello" 
+        
+        self.driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
+        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Username']").send_keys(username)
+        self.driver.driver.find_elements(By.CSS_SELECTOR, "input[placeholder='Password']")[0].send_keys(password)
+        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
+        time.sleep(2)
+        text = self.driver.driver.find_element(By.CSS_SELECTOR,"mat-error#mat-mdc-error-0.mat-mdc-form-field-error.mat-mdc-form-field-bottom-align").text
+        
+        
+        self.assertEqual(text,"Username or Password is incorrect.")
+        
+    
      
     @classmethod
     def tearDownClass(cls):
@@ -38,4 +58,4 @@ class UnitTestsRegister(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-        
+      

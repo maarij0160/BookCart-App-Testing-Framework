@@ -6,6 +6,8 @@ load_dotenv()
 sys.path.insert(1, os.getenv("CONFIGPATH"))
 
 from DriverConfig import WebDriver
+sys.path.insert(1, os.getenv("CONFIGBOOK"))
+from page import Page
 from selenium.webdriver.common.by import By
 import unittest
 import time
@@ -17,74 +19,70 @@ class UnitTestsRegister(unittest.TestCase):
 
         cls.driver.initializeDriver()
 
+        
+    def test_01_validRegister(self):
+        self.driver.driver.get(self.driver.url)
+        firstName="Muhammad"
+        lastName="Faheem"
+        username="Maarij697789012"
+        password="Temp123456"
+        
+        registerPage= Page()
+        
+        registerPage.clickLoginLink(self.driver)
+        registerPage.clickRegisterLink(self.driver)
+        registerPage.enterFirstNameField(self.driver, firstName)
+        registerPage.enterLastNameField(self.driver, lastName)
+        registerPage.enterRegUsernameField(self.driver, username)
+        registerPage.enterRegPasswordField(self.driver, password)
+        registerPage.enterConfirmPasswordField(self.driver, password)
+        registerPage.clickGenderCheckbox(self.driver)
+        
+        time.sleep(5)
+        registerPage.clickRegisterButton(self.driver)
+        time.sleep(5)
+        header= registerPage.getLoginTextBack(self.driver)
+        self.assertEqual(header,'Login')
 
-    def test_InvalidRegister(self):
+    
+    def test_02_InvalidRegister(self):
         
         self.driver.driver.get(self.driver.url)
         firstName="Muhammad"
         lastName="Faheem"
-        username="Maarij69"
-        password="Temp1234"
+        username="Maarij697789012"
+        password="Temp123456"
+
+        registerPage= Page()
         
+        registerPage.clickLoginLink(self.driver)
+        registerPage.clickRegisterLink(self.driver)
+        registerPage.enterFirstNameField(self.driver, firstName)
+        registerPage.enterLastNameField(self.driver, lastName)
+        registerPage.enterRegUsernameField(self.driver, username)
+        registerPage.enterRegPasswordField(self.driver, password)
+        registerPage.enterConfirmPasswordField(self.driver, password)
+        registerPage.clickGenderCheckbox(self.driver)
+
         
-        self.driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
-        self.driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[3].click()
-    
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='First name']").send_keys(firstName)
-        
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Last Name']").send_keys(lastName)
-        
-        
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='User name']").send_keys(username)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Password']").send_keys(password)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Confirm Password']").send_keys(password)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "mat-radio-button[value='Male']").click()
         time.sleep(5)
         
         try:
-            reg_button = self.driver.find_element(By.CLASS_NAME, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base")[0]
+            reg_button = registerPage.clickRegisterButton(self.driver)
             if reg_button.is_enabled():
                 reg_button.click()
         except:
             pass
-        
-    def test_validRegister(self):
-        self.driver.driver.get(self.driver.url)
-        firstName="Muhammad"
-        lastName="Faheem"
-        username="Maarij69"
-        password="Temp1234"
-        
-        
-        self.driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
-        self.driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[3].click()
     
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='First name']").send_keys(firstName)
-        
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Last Name']").send_keys(lastName)
-        
-        
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='User name']").send_keys(username)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Password']").send_keys(password)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Confirm Password']").send_keys(password)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "mat-radio-button[value='Male']").click()
-        
-        time.sleep(5)
-        self.driver.driver.find_elements(By.CSS_SELECTOR,"button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base")[0].click()
-        
-        time.sleep(5)
-        header = self.driver.driver.find_element(By.CSS_SELECTOR,"mat-card-title.mat-mdc-card-title.mat-h1").text
-        self.assertEqual(header,'Login')
-        
-    
-        
-    
-       
     @classmethod
     def tearDownClass(cls):
         cls.driver.closeDriver()
 
 if __name__ == "__main__":
-    unittest.main()
+    test_suite = unittest.TestSuite()
+    test_suite.addTest(UnitTestsRegister('test_01_validRegister'))
+    test_suite.addTest(UnitTestsRegister('test_02_InvalidRegister'))
+    
+    unittest.TextTestRunner().run(test_suite)
     
         

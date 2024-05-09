@@ -11,6 +11,9 @@ load_dotenv()
 sys.path.insert(1, os.getenv("CONFIGPATH"))
 
 from DriverConfig import WebDriver
+sys.path.insert(1, os.getenv("CONFIGBOOK"))
+from page import Page
+
 
 class UnitTestsCategories(unittest.TestCase):
     @classmethod
@@ -21,24 +24,18 @@ class UnitTestsCategories(unittest.TestCase):
     def test_click_category_biography(self):
         self.driver.driver.get(self.driver.url)
         
-        # Use XPath to locate the element
-        category_element = WebDriverWait(self.driver.driver, 5).until(
-            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/div/app-home/div/div[1]/div/app-book-filter/mat-nav-list/mat-list-item[2]"))
-        )
-        
-        # Click on the category element
+        category=Page()
+        category_element = category.clickBiography(self.driver) 
         category_element.click()
 
-        time.sleep(2)  # Adding a brief pause to allow the page to load
+        time.sleep(2) 
         
-        # Click on the specified element
-        book_element = self.driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-home/div/div[2]/div/div[1]/app-book-card/mat-card/a")
-        book_element.click()
+    
+        category.clickBook(self.driver)
 
-        time.sleep(2)  # Adding a brief pause to allow the page to load
+        time.sleep(2) 
 
-        # Assert the text of the specified element
-        book_details_element = self.driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-book-details/mat-card/mat-card-content/div[2]/table/tbody/tr[3]/td[2]")
+        book_details_element = category.getBookCategory(self.driver)
         self.assertEqual(book_details_element.text, "Biography")
 
         time.sleep(5)
@@ -46,101 +43,75 @@ class UnitTestsCategories(unittest.TestCase):
     def test_click_category_fiction(self):
         self.driver.driver.get(self.driver.url)
         
-        # Use XPath to locate the element
-        category_element = WebDriverWait(self.driver.driver, 5).until(
-            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/div/app-home/div/div[1]/div/app-book-filter/mat-nav-list/mat-list-item[3]"))
-        )
-        
-        # Click on the category element
+        category=Page()
+        category_element = category.clickFiction(self.driver) 
         category_element.click()
 
-        time.sleep(2)  # Adding a brief pause to allow the page to load
+        time.sleep(2)
         
-        # Click on the specified element
-        book_element = self.driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-home/div/div[2]/div/div[1]/app-book-card/mat-card/a")
-        book_element.click()
+        category.clickBook(self.driver)
 
-        time.sleep(2)  # Adding a brief pause to allow the page to load
-
-        # Assert the text of the specified element
-        book_details_element = self.driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-book-details/mat-card/mat-card-content/div[2]/table/tbody/tr[3]/td[2]")
+        time.sleep(2) 
+        book_details_element = category.getBookCategory(self.driver)
         self.assertEqual(book_details_element.text, "Fiction")
 
         time.sleep(5)
 
 
+
     def test_click_category_mystery(self):
         self.driver.driver.get(self.driver.url)
         
-        # Use XPath to locate the element
-        category_element = WebDriverWait(self.driver.driver, 5).until(
-            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/div/app-home/div/div[1]/div/app-book-filter/mat-nav-list/mat-list-item[4]"))
-        )
-        
-        # Click on the category element
+        category=Page()
+        category_element = category.clickMystery(self.driver) 
         category_element.click()
 
-        time.sleep(2)  # Adding a brief pause to allow the page to load
+        time.sleep(2)  
         
-        # Click on the specified element
-        book_element = self.driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-home/div/div[2]/div/div[1]/app-book-card/mat-card/a")
-        book_element.click()
+        category.clickBook(self.driver)
 
-        time.sleep(2)  # Adding a brief pause to allow the page to load
+        time.sleep(2)  
 
-        # Assert the text of the specified element
-        book_details_element = self.driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-book-details/mat-card/mat-card-content/div[2]/table/tbody/tr[3]/td[2]")
+        
+        book_details_element = category.getBookCategory(self.driver)
         self.assertEqual(book_details_element.text, "Mystery")
 
-        time.sleep(5)    
+        time.sleep(5)
 
     def test_click_category_fantasy(self):
         self.driver.driver.get(self.driver.url)
         
-        # Use XPath to locate the element
-        category_element = WebDriverWait(self.driver.driver, 5).until(
-            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/div/app-home/div/div[1]/div/app-book-filter/mat-nav-list/mat-list-item[5]"))
-        )
-        
-        # Click on the category element
+        category=Page()
+        category_element = category.clickFantasy(self.driver) 
         category_element.click()
 
-        time.sleep(2)  # Adding a brief pause to allow the page to load
+        time.sleep(2)  
         
-        # Click on the specified element
-        book_element = self.driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-home/div/div[2]/div/div[1]/app-book-card/mat-card/a")
-        book_element.click()
+        category.clickBook(self.driver)
+        
+        time.sleep(2)  
 
-        time.sleep(2)  # Adding a brief pause to allow the page to load
-
-        # Assert the text of the specified element
-        book_details_element = self.driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-book-details/mat-card/mat-card-content/div[2]/table/tbody/tr[3]/td[2]")
+        
+        book_details_element = category.getBookCategory(self.driver)
         self.assertEqual(book_details_element.text, "Fantasy")
 
         time.sleep(5)
-    
 
     def test_click_category_romance(self):
         self.driver.driver.get(self.driver.url)
         
-        # Use XPath to locate the element
-        category_element = WebDriverWait(self.driver.driver, 5).until(
-            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/div/app-home/div/div[1]/div/app-book-filter/mat-nav-list/mat-list-item[6]"))
-        )
-        
-        # Click on the category element
+        category=Page()
+        category_element = category.clickRomance(self.driver) 
         category_element.click()
 
-        time.sleep(2)  # Adding a brief pause to allow the page to load
+        time.sleep(2)  
         
-        # Click on the specified element
-        book_element = self.driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-home/div/div[2]/div/div[1]/app-book-card/mat-card/a")
-        book_element.click()
+        category.clickBook(self.driver)
+        
+        time.sleep(2)  
 
-        time.sleep(2)  # Adding a brief pause to allow the page to load
-
-        # Assert the text of the specified element
-        book_details_element = self.driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-book-details/mat-card/mat-card-content/div[2]/table/tbody/tr[3]/td[2]")
+        
+        book_details_element = category.getBookCategory(self.driver)
         self.assertEqual(book_details_element.text, "Romance")
 
         time.sleep(5)

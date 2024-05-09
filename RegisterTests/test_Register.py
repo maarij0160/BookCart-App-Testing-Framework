@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 load_dotenv() 
 sys.path.insert(1, os.getenv("CONFIGPATH"))
 
+
 from DriverConfig import WebDriver
 sys.path.insert(1, os.getenv("CONFIGBOOK"))
 from page import Page
@@ -19,70 +20,79 @@ class UnitTestsRegister(unittest.TestCase):
 
         cls.driver.initializeDriver()
 
+
+    def test_InvalidRegister(self):
         
-    def test_01_validRegister(self):
         self.driver.driver.get(self.driver.url)
         firstName="Muhammad"
         lastName="Faheem"
-        username="Maarij697789012"
-        password="Temp123456"
+        username="Maarij69"
+        password="Temp1234"
         
-        registerPage= Page()
+        register=Page()
         
-        registerPage.clickLoginLink(self.driver)
-        registerPage.clickRegisterLink(self.driver)
-        registerPage.enterFirstNameField(self.driver, firstName)
-        registerPage.enterLastNameField(self.driver, lastName)
-        registerPage.enterRegUsernameField(self.driver, username)
-        registerPage.enterRegPasswordField(self.driver, password)
-        registerPage.enterConfirmPasswordField(self.driver, password)
-        registerPage.clickGenderCheckbox(self.driver)
-        
-        time.sleep(5)
-        registerPage.clickRegisterButton(self.driver)
-        time.sleep(5)
-        header= registerPage.getLoginTextBack(self.driver)
-        self.assertEqual(header,'Login')
-
+        register.clickLoginLink(self.driver)
+        register.clickRegisterLink(self.driver)
     
-    def test_02_InvalidRegister(self):
+        time.sleep(2)
+        register.enterFirstNameField(self.driver,firstName)
         
-        self.driver.driver.get(self.driver.url)
-        firstName="Muhammad"
-        lastName="Faheem"
-        username="Maarij697789012"
-        password="Temp123456"
-
-        registerPage= Page()
+        register.enterLastNameField(self.driver,lastName)        
         
-        registerPage.clickLoginLink(self.driver)
-        registerPage.clickRegisterLink(self.driver)
-        registerPage.enterFirstNameField(self.driver, firstName)
-        registerPage.enterLastNameField(self.driver, lastName)
-        registerPage.enterRegUsernameField(self.driver, username)
-        registerPage.enterRegPasswordField(self.driver, password)
-        registerPage.enterConfirmPasswordField(self.driver, password)
-        registerPage.clickGenderCheckbox(self.driver)
-
-        
+        register.enterRegUsernameField(self.driver,username)
+        register.enterRegPasswordField(self.driver,password)
+        register.enterConfirmPasswordField(self.driver,password)
+        time.sleep(2)
+        register.clickGenderCheckbox(self.driver)
         time.sleep(5)
         
         try:
-            reg_button = registerPage.clickRegisterButton(self.driver)
+            reg_button = register.clickRegisterButton(self.driver)
             if reg_button.is_enabled():
                 reg_button.click()
         except:
             pass
+        
+    def test_validRegister(self):
+
+        self.driver.driver.get(self.driver.url)
+        firstName="Muhammad"
+        lastName="Faheem"
+        username="alexanderHaris0311321764573"
+        password="Temp1234"
+        
+        register=Page()
+        
+        register.clickLoginLink(self.driver)
+        register.clickRegisterLink(self.driver)
     
+        time.sleep(2)
+        register.enterFirstNameField(self.driver,firstName)
+        
+        register.enterLastNameField(self.driver,lastName)        
+        
+        register.enterRegUsernameField(self.driver,username)
+        register.enterRegPasswordField(self.driver,password)
+        register.enterConfirmPasswordField(self.driver,password)
+        time.sleep(2)
+        register.clickGenderCheckbox(self.driver)
+        time.sleep(5)
+        time.sleep(10)
+        reg_button = register.clickRegisterButton(self.driver)
+        reg_button.click()
+        time.sleep(5)
+        header =register.getLoginHeader(self.driver)
+        self.assertEqual(header,'Login')
+        
+    
+        
+    
+       
     @classmethod
     def tearDownClass(cls):
         cls.driver.closeDriver()
 
+
 if __name__ == "__main__":
-    test_suite = unittest.TestSuite()
-    test_suite.addTest(UnitTestsRegister('test_01_validRegister'))
-    test_suite.addTest(UnitTestsRegister('test_02_InvalidRegister'))
-    
-    unittest.TextTestRunner().run(test_suite)
-    
+    unittest.main()
         

@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 class Page:
 
     # login
@@ -15,7 +17,7 @@ class Page:
         driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
 
     def getLoginHeader(self, driver):
-        return driver.driver.find_element(By.CSS_SELECTOR,"a.mat-mdc-menu-trigger.mdc-button.mdc-button--unelevated.mat-mdc-unelevated-button.mat-primary.mat-mdc-button-base.ng-star-inserted").text
+        return driver.driver.find_element(By.XPATH,"/html/body/app-root/div/app-login/div/mat-card/mat-card-header/div[1]/mat-card-title").text
     
     def getInvalidLoginText(self,driver):
         return driver.driver.find_element(By.CSS_SELECTOR,"mat-error#mat-mdc-error-0.mat-mdc-form-field-error.mat-mdc-form-field-bottom-align").text
@@ -44,7 +46,51 @@ class Page:
         driver.driver.find_element(By.CSS_SELECTOR, "mat-radio-button[value='Male']").click()
         
     def clickRegisterButton(self, driver):
-        return driver.driver.find_element(By.CLASS_NAME, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base")[0]
+        return driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-user-registration/div/mat-card/mat-card-content/form/mat-card-actions/button")
     
     def getLoginTextBack(self,driver):
         return driver.driver.find_element(By.CSS_SELECTOR,"mat-card-title.mat-mdc-card-title.mat-h1").text
+
+
+    #category
+    def clickBiography(self,driver):
+        return WebDriverWait(driver.driver, 5).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/div/app-home/div/div[1]/div/app-book-filter/mat-nav-list/mat-list-item[2]"))
+        )
+
+    def clickFiction(self,driver):
+        return WebDriverWait(driver.driver, 5).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/div/app-home/div/div[1]/div/app-book-filter/mat-nav-list/mat-list-item[3]"))
+        )
+
+    def clickMystery(self,driver):
+        return WebDriverWait(driver.driver, 5).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/div/app-home/div/div[1]/div/app-book-filter/mat-nav-list/mat-list-item[4]"))
+        )    
+
+    def clickFantasy(self,driver):
+        return WebDriverWait(driver.driver, 5).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/div/app-home/div/div[1]/div/app-book-filter/mat-nav-list/mat-list-item[5]"))
+        )     
+
+    def clickRomance(self,driver):
+        return WebDriverWait(driver.driver, 5).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/app-root/div/app-home/div/div[1]/div/app-book-filter/mat-nav-list/mat-list-item[6]"))
+        )
+
+    def clickBook(self,driver):
+        driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-home/div/div[2]/div/div[1]/app-book-card/mat-card/a").click()
+
+    def getBookCategory(self,driver):
+        return driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-book-details/mat-card/mat-card-content/div[2]/table/tbody/tr[3]/td[2]")    
+
+
+    #search
+    
+    def giveInput(self,driver):
+        return WebDriverWait(driver.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, "/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/div[2]/app-search/form/input"))
+        )
+        
+    def getBookName(self,driver):
+        return driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-book-details/mat-card/mat-card-content/div[2]/table/tbody/tr[1]/td[2]")

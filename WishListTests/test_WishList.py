@@ -73,7 +73,9 @@ class UnitTestsWishList(unittest.TestCase):
         self.driver.driver.find_elements(By.CSS_SELECTOR, "input[placeholder='Password']")[0].send_keys(password)
         self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
         time.sleep(2)
+        self.driver.driver.find_element(By.CSS_SELECTOR, "body > app-root > div > app-home > div > div.col.mb-3 > div > div:nth-child(1) > app-book-card > mat-card > mat-card-content > div.favourite.mat-elevation-z8.ng-star-inserted > app-addtowishlist > span").click()
         
+        time.sleep(2)
         self.driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[1].click()
         
         time.sleep(2)
@@ -88,6 +90,14 @@ class UnitTestsWishList(unittest.TestCase):
     def tearDownClass(cls):
         cls.driver.closeDriver
 
-if __name__ == "__main__":
-    unittest.main()
-        
+if _name_ == "_main_":
+    #unittest.main()
+    testcase = test_cases = [UnitTestsWishList('test_addtoList'), 
+                  UnitTestsWishList('test_removefromList'), 
+                  UnitTestsWishList('test_clearList')]
+    
+    for test_case in testcase:
+        test_suite = unittest.TestSuite()
+        test_suite.addTest(test_case)
+        runner = unittest.TextTestRunner()
+        runner.run(test_suite)

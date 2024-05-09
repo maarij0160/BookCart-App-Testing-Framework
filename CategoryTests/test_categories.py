@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 import unittest
 import time
-from dotenv import load_dotenv, dotenv_values 
+from dotenv import load_dotenv
 import sys
 import os
 from selenium.webdriver.support.ui import WebDriverWait

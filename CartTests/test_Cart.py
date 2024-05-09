@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 import unittest
 import time
-from dotenv import load_dotenv, dotenv_values 
+from dotenv import load_dotenv
 import sys
 import os
 
@@ -79,7 +79,7 @@ class UnitTestsCart(unittest.TestCase):
         time.sleep(2)
         self.assertEqual(int(initial) - 1,int(final))
         
-        
+       
     def test_clearcart(self):
         
         self.driver.driver.get(self.driver.url)

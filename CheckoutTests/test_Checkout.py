@@ -10,7 +10,7 @@ sys.path.insert(1, os.getenv("CONFIGPATH"))
 
 from DriverConfig import WebDriver
 
-class UnitTestsRegister(unittest.TestCase):
+class UnitTestsCheckout(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver=WebDriver()

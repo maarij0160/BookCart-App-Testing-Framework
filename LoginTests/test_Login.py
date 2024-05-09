@@ -4,14 +4,14 @@ import time
 from dotenv import load_dotenv, dotenv_values 
 import sys
 import os
-import pytest
+
 
 load_dotenv() 
 sys.path.insert(1, os.getenv("CONFIGPATH"))
 
 from DriverConfig import WebDriver
 
-class UnitTestsRegister(unittest.TestCase):
+class UnitTestsLogin(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver=WebDriver()

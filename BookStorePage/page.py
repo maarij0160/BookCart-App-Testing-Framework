@@ -124,3 +124,21 @@ class Page:
         
     def clearCart(self,driver):
         driver.driver.find_elements(By.CSS_SELECTOR,"body > app-root > div > app-shoppingcart > mat-card > mat-card-header > div.ng-star-inserted > button")[0].click()
+        
+        
+    #wishlist
+    
+    def getWishlistCount(self,driver):
+        return driver.driver.find_element(By.CSS_SELECTOR, "body > app-root > app-nav-bar > mat-toolbar > mat-toolbar-row > div.d-flex.align-items-center > button.mdc-icon-button.mat-mdc-icon-button.mat-unthemed.mat-mdc-button-base.ng-star-inserted").text
+    
+    def addToWishlist(self,driver):
+        driver.driver.find_element(By.CSS_SELECTOR, "body > app-root > div > app-home > div > div.col.mb-3 > div > div:nth-child(1) > app-book-card > mat-card > mat-card-content > div.favourite.mat-elevation-z8.ng-star-inserted > app-addtowishlist > span").click()
+        
+    def removeFromList(self,driver):
+        driver.driver.find_element(By.CSS_SELECTOR,"body > app-root > div > app-home > div > div.col.mb-3 > div > div:nth-child(1) > app-book-card > mat-card > mat-card-content > div.favourite.mat-elevation-z8.ng-star-inserted > app-addtowishlist > span").click()
+        
+    def goToWishlist(self,driver):
+        driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[1].click()
+        
+    def clearWishlist(self,driver):
+        driver.driver.find_element(By.CSS_SELECTOR,"button.mat-elevation-z4.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-unthemed.mat-mdc-button-base").click()

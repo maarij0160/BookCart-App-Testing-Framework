@@ -142,3 +142,27 @@ class Page:
         
     def clearWishlist(self,driver):
         driver.driver.find_element(By.CSS_SELECTOR,"button.mat-elevation-z4.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-unthemed.mat-mdc-button-base").click()
+        
+
+    #checkout
+    
+    def clickCheckoutButton(self,driver):
+        driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[3].click()
+        
+    def enterName(self,driver,name):
+        driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Name']").send_keys(name)
+    
+    def enterAddress1(self,driver,address1):
+        driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Address Line 1']").send_keys(address1)
+    
+    def enterAddress2(self,driver,address2):
+        driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Address Line 2']").send_keys(address2)
+        
+    def enterPincode(self,driver,pincode):
+        driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Pincode']").send_keys(pincode)
+        
+    def enterState(self,driver,state): 
+        driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='State']").send_keys(state)
+        
+    def clickPlaceOrderButton(self,driver):
+        driver.driver.find_elements(By.CSS_SELECTOR,"button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base")[0].click()

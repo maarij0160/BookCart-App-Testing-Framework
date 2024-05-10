@@ -10,6 +10,9 @@ sys.path.insert(1, os.getenv("CONFIGPATH"))
 
 from DriverConfig import WebDriver
 
+sys.path.insert(1, os.getenv("CONFIGBOOK"))
+from page import Page
+
 class UnitTestsCheckout(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -27,36 +30,41 @@ class UnitTestsCheckout(unittest.TestCase):
         pincode = 123456
         state = "Sindh"
         
+        checkout = Page()
         
-        self.driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Username']").send_keys(username)
-        self.driver.driver.find_elements(By.CSS_SELECTOR, "input[placeholder='Password']")[0].send_keys(password)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
+        checkout.clickLoginLink(self.driver)
+        checkout.enterUsernameField(self.driver, username)
+        checkout.enterPasswordField(self.driver, password)
+        checkout.clickLoginButton(self.driver)
         time.sleep(2)
         
-        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
+        checkout.addItemToCart(self.driver)
+        
         
         time.sleep(2)
         
         
-    
-        self.driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[2].click()
+        checkout.goToCart(self.driver)
         time.sleep(2)
-        self.driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[3].click()
+        checkout.clickCheckoutButton(self.driver)
+        
+        
         time.sleep(2)
         
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Name']").send_keys(name)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Address Line 1']").send_keys(address1)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Address Line 2']").send_keys(address2)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Pincode']").send_keys(pincode)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='State']").send_keys(state)
-        initial = self.driver.driver.find_elements(By.CSS_SELECTOR, "span#mat-badge-content-0.mat-badge-content.mat-badge-active")[0].text
+        checkout.enterName(self.driver, name)
+        checkout.enterAddress1(self.driver, address1)
+        checkout.enterAddress2(self.driver, address2)
+        checkout.enterPincode(self.driver, pincode)
+        checkout.enterState(self.driver, state)
+        
         time.sleep(2)
-        self.driver.driver.find_elements(By.CSS_SELECTOR,"button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base")[0].click()
+        checkout.clickPlaceOrderButton(self.driver)
+        
         time.sleep(7)
-        final = self.driver.driver.find_elements(By.CSS_SELECTOR, "span#mat-badge-content-0.mat-badge-content.mat-badge-active")[0].text
+        
+        final = checkout.getCartCount(self.driver)
         time.sleep(2)
-        self.assertEqual(int(initial) - 1,int(final))
+        self.assertEqual(int(final),0)
      
     @classmethod
     def tearDownClass(cls):

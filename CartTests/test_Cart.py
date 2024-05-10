@@ -9,6 +9,9 @@ load_dotenv()
 sys.path.insert(1, os.getenv("CONFIGPATH"))
 
 from DriverConfig import WebDriver
+sys.path.insert(1, os.getenv("CONFIGBOOK"))
+from page import Page
+
 
 class UnitTestsCart(unittest.TestCase):
     @classmethod
@@ -23,19 +26,23 @@ class UnitTestsCart(unittest.TestCase):
         username="hello"
         password="hello123" 
         
-        self.driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Username']").send_keys(username)
-        self.driver.driver.find_elements(By.CSS_SELECTOR, "input[placeholder='Password']")[0].send_keys(password)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
+        cart = Page()
+        
+        cart.clickLoginLink(self.driver)
+        cart.enterUsernameField(self.driver, username)
+        cart.enterPasswordField(self.driver, password)
+        cart.clickLoginButton(self.driver)
         time.sleep(2)
-        initial = self.driver.driver.find_elements(By.CSS_SELECTOR, "span#mat-badge-content-0.mat-badge-content.mat-badge-active")[0].text
-        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
+       
+        initial = cart.getCartCount(self.driver)
+        cart.addItemToCart(self.driver)
+       
         
         time.sleep(2)
-        final = self.driver.driver.find_elements(By.CSS_SELECTOR, "span#mat-badge-content-0.mat-badge-content.mat-badge-active")[0].text
-        
+       
+        final = cart.getCartCount(self.driver)
         self.assertEqual(int(initial) + 1,int(final))
-        time.sleep(5)
+      
         
     
         
@@ -45,20 +52,30 @@ class UnitTestsCart(unittest.TestCase):
         username="hello"
         password="hello123" 
         
-        self.driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Username']").send_keys(username)
-        self.driver.driver.find_elements(By.CSS_SELECTOR, "input[placeholder='Password']")[0].send_keys(password)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
+        cart = Page()
+        
+        cart.clickLoginLink(self.driver)
+        cart.enterUsernameField(self.driver, username)
+        cart.enterPasswordField(self.driver, password)
+        cart.clickLoginButton(self.driver)
         time.sleep(2)
-        self.driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[2].click()
+        
+        cart.addItemToCart(self.driver)
         time.sleep(2)
-        initial = self.driver.driver.find_element(By.CSS_SELECTOR, "div.d-flex.align-items-center > div:nth-child(2)").text
-        self.driver.driver.find_element(By.CSS_SELECTOR,"td.mat-mdc-cell.mat-column-quantity > div > div:nth-child(3) > button").click()
+        
+        cart.goToCart(self.driver)
+        
         time.sleep(2)
-        final = self.driver.driver.find_element(By.CSS_SELECTOR, "div.d-flex.align-items-center > div:nth-child(2)").text
+       
+        initial = cart.getCartCount(self.driver)
+        cart.IncQty(self.driver)
+        
+        time.sleep(2)
+        final = cart.getCartCount(self.driver)
+       
         time.sleep(2)
         self.assertEqual(int(initial) + 1,int(final))
-        time.sleep(5)
+        
         
     def test_decQty(self):
         
@@ -66,20 +83,31 @@ class UnitTestsCart(unittest.TestCase):
         username="hello"
         password="hello123" 
         
-        self.driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Username']").send_keys(username)
-        self.driver.driver.find_elements(By.CSS_SELECTOR, "input[placeholder='Password']")[0].send_keys(password)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
+        cart = Page()
+        
+        cart.clickLoginLink(self.driver)
+        cart.enterUsernameField(self.driver, username)
+        cart.enterPasswordField(self.driver, password)
+        cart.clickLoginButton(self.driver)
         time.sleep(2)
-        self.driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[2].click()
+        
+        
+        cart.addItemToCart(self.driver)
         time.sleep(2)
-        initial = self.driver.driver.find_element(By.CSS_SELECTOR, "div.d-flex.align-items-center > div:nth-child(2)").text
-        self.driver.driver.find_element(By.CSS_SELECTOR,"td.mat-mdc-cell.mat-column-quantity > div > div:nth-child(1) > button").click()
+        cart.goToCart(self.driver)
+        
         time.sleep(2)
-        final = self.driver.driver.find_element(By.CSS_SELECTOR, "div.d-flex.align-items-center > div:nth-child(2)").text
+       
+        initial = cart.getCartCount(self.driver)
+        cart.DecQty(self.driver)
+        
         time.sleep(2)
+        final = cart.getCartCount(self.driver)
+       
+        time.sleep(2)
+        
         self.assertEqual(int(initial) - 1,int(final))
-        time.sleep(5)
+
         
     def test_deleteItem(self):
         
@@ -88,24 +116,30 @@ class UnitTestsCart(unittest.TestCase):
         username="hello"
         password="hello123" 
         
-        self.driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Username']").send_keys(username)
-        self.driver.driver.find_elements(By.CSS_SELECTOR, "input[placeholder='Password']")[0].send_keys(password)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
-        time.sleep(2)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
-        time.sleep(2)
-        self.driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[2].click()
-        time.sleep(2)
-        initialcart = self.driver.driver.find_elements(By.CSS_SELECTOR, "span#mat-badge-content-0.mat-badge-content.mat-badge-active")[0].text
-        itemcount = self.driver.driver.find_element(By.CSS_SELECTOR, "div.d-flex.align-items-center > div:nth-child(2)").text
-        self.driver.driver.find_element(By.CSS_SELECTOR,"body > app-root > div > app-shoppingcart > mat-card > mat-card-content.mat-mdc-card-content.my-3.ng-star-inserted > table > tbody > tr > td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-action.mat-column-action.ng-star-inserted > button").click()
+        cart = Page()
+        
+        cart.clickLoginLink(self.driver)
+        cart.enterUsernameField(self.driver, username)
+        cart.enterPasswordField(self.driver, password)
+        cart.clickLoginButton(self.driver)
         time.sleep(2)
         
-        final = self.driver.driver.find_elements(By.CSS_SELECTOR, "span#mat-badge-content-0.mat-badge-content.mat-badge-active")[0].text
+        cart.addItemToCart(self.driver)
+        
+        time.sleep(2)
+        cart.goToCart(self.driver)
+        
+        time.sleep(2)
+        initialcart = cart.getCartCount(self.driver)
+        itemcount = cart.getItemCount(self.driver)
+       
+        cart.deleteItem(self.driver)
+        time.sleep(2)
+        final = cart.getCartCount(self.driver)
+        
         time.sleep(2)
         self.assertEqual(int(initialcart) - int(itemcount),int(final))
-        time.sleep(5)
+
             
     def test_clearcart(self):
         
@@ -113,24 +147,27 @@ class UnitTestsCart(unittest.TestCase):
         username="hello"
         password="hello123" 
         
-        self.driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
-        self.driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Username']").send_keys(username)
-        self.driver.driver.find_elements(By.CSS_SELECTOR, "input[placeholder='Password']")[0].send_keys(password)
-        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
+        cart = Page()
+        
+        cart.clickLoginLink(self.driver)
+        cart.enterUsernameField(self.driver, username)
+        cart.enterPasswordField(self.driver, password)
+        cart.clickLoginButton(self.driver)
         time.sleep(2)
         
-        self.driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
-        time.sleep(2)
-        
-        self.driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[2].click()
+        cart.addItemToCart(self.driver)
         
         time.sleep(2)
-        self.driver.driver.find_elements(By.CSS_SELECTOR,"body > app-root > div > app-shoppingcart > mat-card > mat-card-header > div.ng-star-inserted > button")[0].click()
+        cart.goToCart(self.driver)
+        
         time.sleep(2)
-        final = self.driver.driver.find_elements(By.CSS_SELECTOR, "span#mat-badge-content-0.mat-badge-content.mat-badge-active")[0].text
+        cart.clearCart(self.driver)
+        
+        time.sleep(2)
+        final = cart.getCartCount(self.driver)
+        
         self.assertEqual(int(final),0)
-      
-        time.sleep(5)
+   
         
     
      
@@ -138,13 +175,15 @@ class UnitTestsCart(unittest.TestCase):
     def tearDownClass(cls):
         cls.driver.closeDriver
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     #unittest.main()
     test_cases = [UnitTestsCart('test_addtocart'), 
-                  UnitTestsCart('test_incQty'), 
+                 UnitTestsCart('test_incQty'), 
                   UnitTestsCart('test_decQty'), 
                   UnitTestsCart('test_deleteItem'), 
                   UnitTestsCart('test_clearcart')]
+    
+    
     
     for test_case in test_cases:
         test_suite = unittest.TestSuite()

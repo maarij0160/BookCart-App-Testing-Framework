@@ -94,3 +94,33 @@ class Page:
         
     def getBookName(self,driver):
         return driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-book-details/mat-card/mat-card-content/div[2]/table/tbody/tr[1]/td[2]")
+    
+    
+    #cart
+    
+    def getCartCount(self,driver):
+        return driver.driver.find_elements(By.CSS_SELECTOR, "span#mat-badge-content-0.mat-badge-content.mat-badge-active")[0].text
+    
+    def addItemToCart(self,driver):
+        driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
+        
+        
+    def goToCart(self,driver):
+        driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[2].click()
+        
+    def IncQty(self,driver):
+        driver.driver.find_element(By.CSS_SELECTOR,"td.mat-mdc-cell.mat-column-quantity > div > div:nth-child(3) > button").click()
+        
+        
+    def DecQty(self,driver):
+        driver.driver.find_element(By.CSS_SELECTOR,"td.mat-mdc-cell.mat-column-quantity > div > div:nth-child(1) > button").click()
+        
+    
+    def getItemCount(self,driver):
+        return driver.driver.find_element(By.CSS_SELECTOR, "div.d-flex.align-items-center > div:nth-child(2)").text
+    
+    def deleteItem(self,driver):
+        driver.driver.find_element(By.CSS_SELECTOR,"body > app-root > div > app-shoppingcart > mat-card > mat-card-content.mat-mdc-card-content.my-3.ng-star-inserted > table > tbody > tr > td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-action.mat-column-action.ng-star-inserted > button").click()
+        
+    def clearCart(self,driver):
+        driver.driver.find_elements(By.CSS_SELECTOR,"body > app-root > div > app-shoppingcart > mat-card > mat-card-header > div.ng-star-inserted > button")[0].click()

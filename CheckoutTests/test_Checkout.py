@@ -32,7 +32,8 @@ class UnitTestsCheckout(unittest.TestCase):
         
         checkout = Page()
         
-        checkout.clickLoginLink(self.driver)
+        self.driver.driver.get("https://bookcart.azurewebsites.net/login")
+        #checkout.clickLoginLink(self.driver)
         checkout.enterUsernameField(self.driver, username)
         checkout.enterPasswordField(self.driver, password)
         checkout.clickLoginButton(self.driver)
@@ -45,7 +46,7 @@ class UnitTestsCheckout(unittest.TestCase):
         
         
         checkout.goToCart(self.driver)
-        time.sleep(2)
+        time.sleep(4)
         checkout.clickCheckoutButton(self.driver)
         
         
@@ -57,7 +58,7 @@ class UnitTestsCheckout(unittest.TestCase):
         checkout.enterPincode(self.driver, pincode)
         checkout.enterState(self.driver, state)
         
-        time.sleep(2)
+        time.sleep(4)
         checkout.clickPlaceOrderButton(self.driver)
         
         time.sleep(7)

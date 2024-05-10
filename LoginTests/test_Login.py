@@ -4,7 +4,7 @@ import time
 from dotenv import load_dotenv
 import sys
 import os
-
+from selenium.webdriver.common.keys import Keys
 
 load_dotenv()
 sys.path.insert(1, os.getenv("CONFIGPATH"))
@@ -28,12 +28,12 @@ class UnitTestsLogin(unittest.TestCase):
         password = "hello123"
         loginPage = Page()
 
-        
+        time.sleep(3)
         loginPage.clickLoginLink(self.driver)
         loginPage.enterUsernameField(self.driver, username)
         loginPage.enterPasswordField(self.driver, password)
         loginPage.clickLoginButton(self.driver)
-        time.sleep(2)
+        time.sleep(3)
         header = loginPage.getLoginHeader(self.driver)
         header = header.split("\n")[-1]
         self.assertEqual(header, username)
@@ -45,9 +45,13 @@ class UnitTestsLogin(unittest.TestCase):
         password = "hello"
         loginPage = Page()
 
-        loginPage.clickLoginLink(self.driver)
+        self.driver.driver.get("https://bookcart.azurewebsites.net/login")
+
+        time.sleep(2)
+        
         loginPage.enterUsernameField(self.driver, username)
         loginPage.enterPasswordField(self.driver, password)
+        time.sleep(2)
         loginPage.clickLoginButton(self.driver)
         time.sleep(2)
         text = loginPage.getInvalidLoginText(self.driver)

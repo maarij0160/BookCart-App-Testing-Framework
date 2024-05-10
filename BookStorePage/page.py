@@ -1,11 +1,12 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 class Page:
 
     # login
     def clickLoginLink(self,driver):
-        driver.driver.find_element(By.CSS_SELECTOR, "[mattooltip='Login']").click()
+        driver.driver.find_element(By.XPATH, "/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/div[3]/button[2]").click()
 
     def enterUsernameField(self, driver, username):
         driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Username']").send_keys(username)
@@ -14,15 +15,19 @@ class Page:
         driver.driver.find_elements(By.CSS_SELECTOR, "input[placeholder='Password']")[0].send_keys(password)
 
     def clickLoginButton(self,driver):
-        driver.driver.find_element(By.CSS_SELECTOR, "button.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-primary.mat-mdc-button-base").click()
+        driver.driver.find_element(By.XPATH, "/html/body/app-root/div/app-login/div/mat-card/mat-card-content/form/mat-card-actions/button").click()
 
     def getLoginHeader(self, driver):
-        return driver.driver.find_element(By.XPATH,"/html/body/app-root/div/app-login/div/mat-card/mat-card-header/div[1]/mat-card-title").text
+        return driver.driver.find_element(By.XPATH,"/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/div[3]/a[1]/span[2]").text
     
     def getInvalidLoginText(self,driver):
         return driver.driver.find_element(By.CSS_SELECTOR,"mat-error#mat-mdc-error-0.mat-mdc-form-field-error.mat-mdc-form-field-bottom-align").text
     
 
+    def logout(self,driver):
+        return driver.driver.find_element(By.XPATH,"/html/body/app-root/app-nav-bar/mat-toolbar/mat-toolbar-row/div[3]/a[1]/span[5]")
+        # time.sleep(2)
+        # driver.driver.find_element(By.CSS_SELECTOR,"button.mat-mdc-menu-item.mat-mdc-focus-indicator.mdc-list-item.ng-tns-c15-3").click()
     # register
     def clickRegisterLink(self, driver):
         driver.driver.find_elements(By.CSS_SELECTOR,"button[tabindex='0']")[3].click()

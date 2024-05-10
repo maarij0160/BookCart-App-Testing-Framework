@@ -108,15 +108,5 @@ class UnitTestsWishList(unittest.TestCase):
         cls.driver.closeDriver
 
 if __name__ == "__main__":
+    unittest.main()
     
-    #unittest.main()
-    testcase = test_cases = [UnitTestsWishList('test_addtoList'), 
-                  UnitTestsWishList('test_removefromList'), 
-                  UnitTestsWishList('test_clearList')]
-    
-    
-    for test_case in testcase:
-        test_suite = unittest.TestSuite()
-        test_suite.addTest(test_case)
-        runner = unittest.TextTestRunner()
-        runner.run(test_suite)

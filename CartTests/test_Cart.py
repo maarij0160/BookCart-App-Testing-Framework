@@ -28,7 +28,10 @@ class UnitTestsCart(unittest.TestCase):
         
         cart = Page()
         
-        cart.clickLoginLink(self.driver)
+        self.driver.driver.get("https://bookcart.azurewebsites.net/login")
+
+        time.sleep(2)
+
         cart.enterUsernameField(self.driver, username)
         cart.enterPasswordField(self.driver, password)
         cart.clickLoginButton(self.driver)
@@ -54,7 +57,10 @@ class UnitTestsCart(unittest.TestCase):
         
         cart = Page()
         
-        cart.clickLoginLink(self.driver)
+        self.driver.driver.get("https://bookcart.azurewebsites.net/login")
+
+        time.sleep(2)
+
         cart.enterUsernameField(self.driver, username)
         cart.enterPasswordField(self.driver, password)
         cart.clickLoginButton(self.driver)
@@ -85,7 +91,10 @@ class UnitTestsCart(unittest.TestCase):
         
         cart = Page()
         
-        cart.clickLoginLink(self.driver)
+        self.driver.driver.get("https://bookcart.azurewebsites.net/login")
+
+        time.sleep(2)
+
         cart.enterUsernameField(self.driver, username)
         cart.enterPasswordField(self.driver, password)
         cart.clickLoginButton(self.driver)
@@ -118,7 +127,10 @@ class UnitTestsCart(unittest.TestCase):
         
         cart = Page()
         
-        cart.clickLoginLink(self.driver)
+        self.driver.driver.get("https://bookcart.azurewebsites.net/login")
+
+        time.sleep(2)
+
         cart.enterUsernameField(self.driver, username)
         cart.enterPasswordField(self.driver, password)
         cart.clickLoginButton(self.driver)
@@ -149,7 +161,10 @@ class UnitTestsCart(unittest.TestCase):
         
         cart = Page()
         
-        cart.clickLoginLink(self.driver)
+        self.driver.driver.get("https://bookcart.azurewebsites.net/login")
+
+        time.sleep(2)
+
         cart.enterUsernameField(self.driver, username)
         cart.enterPasswordField(self.driver, password)
         cart.clickLoginButton(self.driver)
@@ -176,17 +191,8 @@ class UnitTestsCart(unittest.TestCase):
         cls.driver.closeDriver
 
 if __name__ == "__main__":
-    #unittest.main()
-    test_cases = [UnitTestsCart('test_addtocart'), 
-                 UnitTestsCart('test_incQty'), 
-                  UnitTestsCart('test_decQty'), 
-                  UnitTestsCart('test_deleteItem'), 
-                  UnitTestsCart('test_clearcart')]
+    unittest.main()
     
     
     
-    for test_case in test_cases:
-        test_suite = unittest.TestSuite()
-        test_suite.addTest(test_case)
-        runner = unittest.TextTestRunner()
-        runner.run(test_suite)
+    

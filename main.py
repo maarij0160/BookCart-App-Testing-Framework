@@ -1,9 +1,48 @@
 import unittest
-from pathlib import Path
+from RegisterTests.test_Register import UnitTestsRegister
+from LoginTests.test_Login import UnitTestsLogin
+from CartTests.test_Cart import UnitTestsCart
+from CategoryTests.test_categories import UnitTestsCategories
+from SearchTests.test_search import UnitTestsSearch
+from CheckoutTests.test_Checkout import UnitTestsCheckout
+from WishListTests.test_WishList import UnitTestsWishList
+import HtmlTestRunner
 
 if __name__ == "__main__":
-    root_dir = Path('/Users/faheem/Book-Cart-App-Testing-Framework/')
+    test_suite = unittest.TestSuite()
+    test_suite.addTest(UnitTestsRegister('test_validRegister'))
+    test_suite.addTest(UnitTestsRegister('test_InvalidRegister'))
+    test_suite.addTest(UnitTestsLogin('test_validLogin'))
+    test_suite.addTest(UnitTestsLogin('test_InvalidLogin'))
+    test_suite.addTest(UnitTestsCategories('test_click_category_biography'))
+    test_suite.addTest(UnitTestsCategories('test_click_category_fiction'))
+    test_suite.addTest(UnitTestsCategories('test_click_category_mystery'))
+    test_suite.addTest(UnitTestsCategories('test_click_category_romance'))
+    test_suite.addTest(UnitTestsCategories('test_click_category_fantasy'))
+    test_suite.addTest(UnitTestsSearch('test_search'))
+    test_suite.addTest(UnitTestsCheckout('test_checkout'))
+    HtmlTestRunner.HTMLTestRunner(combine_reports=True, report_title="All Tests except Wishlist and Cart").run(test_suite)
 
-    for dir_path in root_dir.glob('**/Tests*'):
-        test_loader = unittest.TestLoader().discover(dir_path, pattern='UnitTests-Re*.py')
-        unittest.TextTestRunner().run(test_loader)
+
+
+    test_cases = [UnitTestsCart('test_addtocart'), 
+                 UnitTestsCart('test_incQty'), 
+                  UnitTestsCart('test_decQty'), 
+                  UnitTestsCart('test_deleteItem'), 
+                  UnitTestsCart('test_clearcart')]
+    for test_case in test_cases:
+        test_suite = unittest.TestSuite()
+        test_suite.addTest(test_case)
+        HtmlTestRunner.HTMLTestRunner(combine_reports=True, report_title="Cart Tests").run(test_suite)
+
+
+    test_cases = [UnitTestsWishList('test_addtoList'), 
+                  UnitTestsWishList('test_removefromList'), 
+                  UnitTestsWishList('test_clearList')]
+    
+    
+    for test_case in test_cases:
+        test_suite = unittest.TestSuite()
+        test_suite.addTest(test_case)
+        HtmlTestRunner.HTMLTestRunner(combine_reports=True, report_title="Wishlist Tests").run(test_suite)
+

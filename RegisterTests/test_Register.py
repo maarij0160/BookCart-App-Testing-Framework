@@ -58,7 +58,7 @@ class UnitTestsRegister(unittest.TestCase):
         self.driver.driver.get(self.driver.url)
         firstName="Muhammad"
         lastName="Faheem"
-        username="alexanderHaris0311321764573"
+        username="elonmust12345786"
         password="Temp1234"
         
         register=Page()
@@ -81,7 +81,7 @@ class UnitTestsRegister(unittest.TestCase):
         reg_button = register.clickRegisterButton(self.driver)
         reg_button.click()
         time.sleep(5)
-        header =register.getLoginHeader(self.driver)
+        header =register.getLoginTextBack(self.driver)
         self.assertEqual(header,'Login')
         
     

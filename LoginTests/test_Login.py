@@ -56,6 +56,7 @@ class UnitTestsLogin(unittest.TestCase):
         time.sleep(2)
         text = loginPage.getInvalidLoginText(self.driver)
         self.assertEqual(text, "Username or Password is incorrect.")
+        self.driver.closeDriver()
 
     @classmethod
     def tearDownClass(cls):

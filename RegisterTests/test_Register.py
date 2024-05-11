@@ -53,12 +53,16 @@ class UnitTestsRegister(unittest.TestCase):
         except:
             pass
         
+        self.driver.closeDriver()
+        
+        
     def test_validRegister(self):
+
 
         self.driver.driver.get(self.driver.url)
         firstName="Muhammad"
         lastName="Faheem"
-        username="elonmust12345786"
+        username="elonmustmalang1eq23433"
         password="Temp1234"
         
         register=Page()
@@ -76,8 +80,8 @@ class UnitTestsRegister(unittest.TestCase):
         register.enterConfirmPasswordField(self.driver,password)
         time.sleep(2)
         register.clickGenderCheckbox(self.driver)
-        time.sleep(5)
-        time.sleep(10)
+        
+        time.sleep(15)
         reg_button = register.clickRegisterButton(self.driver)
         reg_button.click()
         time.sleep(5)

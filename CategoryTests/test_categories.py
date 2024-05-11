@@ -95,7 +95,7 @@ class UnitTestsCategories(unittest.TestCase):
         book_details_element = category.getBookCategory(self.driver)
         self.assertEqual(book_details_element.text, "Fantasy")
 
-        time.sleep(5)
+        self.driver.closeDriver()
 
     def test_click_category_romance(self):
         self.driver.driver.get(self.driver.url)

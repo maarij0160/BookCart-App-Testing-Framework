@@ -43,7 +43,7 @@ class UnitTestsSearch(unittest.TestCase):
         book_details_element =search.getBookName(self.driver)
         self.assertEqual(book_details_element.text, "Slayer")
 
-        time.sleep(5)
+        self.driver.closeDriver()
 
 
      

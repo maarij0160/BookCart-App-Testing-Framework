@@ -61,11 +61,12 @@ class UnitTestsCheckout(unittest.TestCase):
         time.sleep(4)
         checkout.clickPlaceOrderButton(self.driver)
         
-        time.sleep(7)
+        time.sleep(10)
         
         final = checkout.getCartCount(self.driver)
         time.sleep(2)
         self.assertEqual(int(final),0)
+        self.driver.closeDriver()
      
     @classmethod
     def tearDownClass(cls):

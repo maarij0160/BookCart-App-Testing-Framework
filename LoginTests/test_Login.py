@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 import unittest
 import time
+import pandas as pd
+df=pd.read_csv('LoginTests/login.csv')
 from dotenv import load_dotenv
 import sys
 import os
@@ -24,8 +26,8 @@ class UnitTestsLogin(unittest.TestCase):
 
     def test_validLogin(self):
         self.driver.driver.get(self.driver.url)
-        username = "hello"
-        password = "hello123"
+        username=df.iloc[0,0]
+        password=df.iloc[0,1]
         loginPage = Page()
 
         time.sleep(3)
@@ -41,8 +43,8 @@ class UnitTestsLogin(unittest.TestCase):
     def test_InvalidLogin(self):
 
         self.driver.driver.get(self.driver.url)
-        username = "hello"
-        password = "hello"
+        username=df.iloc[1,0]
+        password=df.iloc[1,1]
         loginPage = Page()
 
         self.driver.driver.get("https://bookcart.azurewebsites.net/login")

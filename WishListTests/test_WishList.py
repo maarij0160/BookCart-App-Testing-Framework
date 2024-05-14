@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 import unittest
 import time
 from dotenv import load_dotenv
+import pandas as pd
+df=pd.read_csv('WishListTests/wishlist.csv')
 import sys
 import os
 
@@ -23,8 +25,8 @@ class UnitTestsWishList(unittest.TestCase):
         
         print('here')
         self.driver.driver.get(self.driver.url)
-        username="hello"
-        password="hello123" 
+        username=df.iloc[0,0]
+        password=df.iloc[0,1]
         
         wishlist = Page()
         wishlist.clickLoginLink(self.driver)
@@ -49,8 +51,8 @@ class UnitTestsWishList(unittest.TestCase):
     def test_removefromList(self):
         
         self.driver.driver.get(self.driver.url)
-        username="hello"
-        password="hello123" 
+        username=df.iloc[0,0]
+        password=df.iloc[0,1]
         
         wishlist = Page()
         wishlist.clickLoginLink(self.driver)
@@ -77,8 +79,8 @@ class UnitTestsWishList(unittest.TestCase):
     def test_clearList(self):
         
         self.driver.driver.get(self.driver.url)
-        username="hello"
-        password="hello123" 
+        username=df.iloc[0,0]
+        password=df.iloc[0,1] 
         
         wishlist = Page()
         wishlist.clickLoginLink(self.driver)

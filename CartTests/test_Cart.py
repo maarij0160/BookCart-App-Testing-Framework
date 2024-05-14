@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 import unittest
 import time
+import pandas as pd
+df=pd.read_csv('CartTests/carts.csv')
 from dotenv import load_dotenv
 import sys
 import os
@@ -23,8 +25,8 @@ class UnitTestsCart(unittest.TestCase):
     def test_addtocart(self):
         
         self.driver.driver.get(self.driver.url)
-        username="hello"
-        password="hello123" 
+        username=df.iloc[0,0]
+        password=df.iloc[0,1]
         
         cart = Page()
         
@@ -52,8 +54,8 @@ class UnitTestsCart(unittest.TestCase):
     def test_incQty(self):
         
         self.driver.driver.get(self.driver.url)
-        username="hello"
-        password="hello123" 
+        username=df.iloc[0,0]
+        password=df.iloc[0,1]
         
         cart = Page()
         
@@ -86,8 +88,8 @@ class UnitTestsCart(unittest.TestCase):
     def test_decQty(self):
         
         self.driver.driver.get(self.driver.url)
-        username="hello"
-        password="hello123" 
+        username=df.iloc[0,0]
+        password=df.iloc[0,1] 
         
         cart = Page()
         
@@ -122,8 +124,8 @@ class UnitTestsCart(unittest.TestCase):
         
             
         self.driver.driver.get(self.driver.url)
-        username="hello"
-        password="hello123" 
+        username=df.iloc[0,0]
+        password=df.iloc[0,1]
         
         cart = Page()
         
@@ -156,8 +158,8 @@ class UnitTestsCart(unittest.TestCase):
     def test_clearcart(self):
         
         self.driver.driver.get(self.driver.url)
-        username="hello"
-        password="hello123" 
+        username=df.iloc[0,0]
+        password=df.iloc[0,1]
         
         cart = Page()
         

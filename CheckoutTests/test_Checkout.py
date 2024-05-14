@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 import unittest
 import time
+import pandas as pd
+df=pd.read_csv('CheckoutTests/checkout.csv')
 from dotenv import load_dotenv
 import sys
 import os
@@ -22,18 +24,17 @@ class UnitTestsCheckout(unittest.TestCase):
 
     def test_checkout(self):
         self.driver.driver.get(self.driver.url)
-        username="hello"
-        password="hello123" 
-        name = "Maarij"
-        address1 = "1234"
-        address2 = "1234" 
-        pincode = 123456
-        state = "Sindh"
+        username=df.iloc[0,0]
+        password=df.iloc[0,1] 
+        name = df.iloc[0,2]
+        address1 = df.iloc[0,3]
+        address2 = df.iloc[0,4]
+        pincode = df.iloc[0,5]
+        state = df.iloc[0,6]
         
         checkout = Page()
         
         self.driver.driver.get("https://bookcart.azurewebsites.net/login")
-        #checkout.clickLoginLink(self.driver)
         checkout.enterUsernameField(self.driver, username)
         checkout.enterPasswordField(self.driver, password)
         checkout.clickLoginButton(self.driver)

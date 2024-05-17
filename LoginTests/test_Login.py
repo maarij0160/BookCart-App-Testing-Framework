@@ -19,7 +19,7 @@ from page import Page
 
 class UnitTestsLogin(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):
+    def setUp(cls):
         cls.driver = WebDriver()
 
         cls.driver.initializeDriver()
@@ -61,7 +61,7 @@ class UnitTestsLogin(unittest.TestCase):
         self.driver.closeDriver()
 
     @classmethod
-    def tearDownClass(cls):
+    def tearDown(cls):
         cls.driver.closeDriver
 
 

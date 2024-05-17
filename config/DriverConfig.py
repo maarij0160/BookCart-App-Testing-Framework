@@ -8,9 +8,9 @@ class WebDriver:
         self.url="https://bookcart.azurewebsites.net/"
 
     def initializeDriver(self):    
-
         try:
             options = Options()
+            options.add_argument("--incognito")
             options.add_experimental_option("excludeSwitches", ["enable-logging"])
             chromedriver = webdriver.Chrome(options=options)
             
@@ -25,6 +25,7 @@ class WebDriver:
         
         if self.driver:    
             self.driver.quit()
+            del self
             print("WebDriver closed successfully!")
 
 

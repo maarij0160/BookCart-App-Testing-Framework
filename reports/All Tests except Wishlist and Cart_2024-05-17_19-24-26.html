@@ -11,9 +11,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2 class="text-capitalize">All Tests except Wishlist and Cart</h2>
-                <p class='attribute'><strong>Start Time: </strong>2024-05-14 16:28:46</p>
-                <p class='attribute'><strong>Duration: </strong>160.63 s</p>
-                <p class='attribute'><strong>Summary: </strong>Total: 11, Pass: 10, Error: 1</p>
+                <p class='attribute'><strong>Start Time: </strong>2024-05-17 19:24:26</p>
+                <p class='attribute'><strong>Duration: </strong>169.99 s</p>
+                <p class='attribute'><strong>Summary: </strong>Total: 11, Pass: 11</p>
             </div>
         </div>
         <div class="row">
@@ -51,7 +51,7 @@
                         </tr>
                         <tr>
                             <td colspan="3">
-                                Total: 2, Pass: 2 -- Duration: 43.61 s
+                                Total: 2, Pass: 2 -- Duration: 38.82 s
                             </td>
                         </tr>
                     </tbody>
@@ -93,7 +93,7 @@
                         </tr>
                         <tr>
                             <td colspan="3">
-                                Total: 2, Pass: 2 -- Duration: 17.61 s
+                                Total: 2, Pass: 2 -- Duration: 24.82 s
                             </td>
                         </tr>
                     </tbody>
@@ -159,7 +159,7 @@
                         </tr>
                         <tr>
                             <td colspan="3">
-                                Total: 5, Pass: 5 -- Duration: 52.79 s
+                                Total: 5, Pass: 5 -- Duration: 50.94 s
                             </td>
                         </tr>
                     </tbody>
@@ -193,7 +193,7 @@
                         </tr>
                         <tr>
                             <td colspan="3">
-                                Total: 1, Pass: 1 -- Duration: 14.57 s
+                                Total: 1, Pass: 1 -- Duration: 18.49 s
                             </td>
                         </tr>
                     </tbody>
@@ -211,76 +211,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class='warning'>
+                        <tr class='success'>
                             <td class="col-xs-10">test_checkout</td>
                             <td class="col-xs-1">
-                                <span class="label label-warning" style="display:block;width:40px;">Error</span>
+                                <span class="label label-success" style="display:block;width:40px;">Pass</span>
                             </td>
                             <td class="col-xs-1">
                                 <button class="btn btn-default btn-xs">View</button>
                             </td>
                         </tr>
                         <tr style="display:none;">
-                            <td class="col-xs-9" colspan="3"><p style="color:maroon;">NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"input[placeholder='Name']"}
-  (Session info: chrome=124.0.6367.202); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Stacktrace:
-0   chromedriver                        0x00000001034068cc chromedriver + 4368588
-1   chromedriver                        0x00000001033fed60 chromedriver + 4336992
-2   chromedriver                        0x0000000103022c04 chromedriver + 289796
-3   chromedriver                        0x0000000103064e00 chromedriver + 560640
-4   chromedriver                        0x000000010309d5ec chromedriver + 792044
-5   chromedriver                        0x0000000103059ab4 chromedriver + 514740
-6   chromedriver                        0x000000010305a50c chromedriver + 517388
-7   chromedriver                        0x00000001033cade8 chromedriver + 4124136
-8   chromedriver                        0x00000001033cfbd8 chromedriver + 4144088
-9   chromedriver                        0x00000001033b07b0 chromedriver + 4016048
-10  chromedriver                        0x00000001033d0508 chromedriver + 4146440
-11  chromedriver                        0x00000001033a2264 chromedriver + 3957348
-12  chromedriver                        0x00000001033efe50 chromedriver + 4275792
-13  chromedriver                        0x00000001033effcc chromedriver + 4276172
-14  chromedriver                        0x00000001033fe9c0 chromedriver + 4336064
-15  libsystem_pthread.dylib             0x000000019d99af94 _pthread_start + 136
-16  libsystem_pthread.dylib             0x000000019d995d34 thread_start + 8
-</p><p style="color:maroon;">Traceback (most recent call last):
-  File "/Users/faheem/Desktop/Book-Cart-App-Testing-Framework/CheckoutTests/test_Checkout.py", line 56, in test_checkout
-    checkout.enterName(self.driver, name)
-  File "/Users/faheem/Desktop/Book-Cart-App-Testing-Framework/BookStorePage/page.py", line 158, in enterName
-    driver.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Name']").send_keys(name)
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 741, in find_element
-    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
-    self.error_handler.check_response(response)
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
-    raise exception_class(message, screen, stacktrace)
-selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"input[placeholder='Name']"}
-  (Session info: chrome=124.0.6367.202); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Stacktrace:
-0   chromedriver                        0x00000001034068cc chromedriver + 4368588
-1   chromedriver                        0x00000001033fed60 chromedriver + 4336992
-2   chromedriver                        0x0000000103022c04 chromedriver + 289796
-3   chromedriver                        0x0000000103064e00 chromedriver + 560640
-4   chromedriver                        0x000000010309d5ec chromedriver + 792044
-5   chromedriver                        0x0000000103059ab4 chromedriver + 514740
-6   chromedriver                        0x000000010305a50c chromedriver + 517388
-7   chromedriver                        0x00000001033cade8 chromedriver + 4124136
-8   chromedriver                        0x00000001033cfbd8 chromedriver + 4144088
-9   chromedriver                        0x00000001033b07b0 chromedriver + 4016048
-10  chromedriver                        0x00000001033d0508 chromedriver + 4146440
-11  chromedriver                        0x00000001033a2264 chromedriver + 3957348
-12  chromedriver                        0x00000001033efe50 chromedriver + 4275792
-13  chromedriver                        0x00000001033effcc chromedriver + 4276172
-14  chromedriver                        0x00000001033fe9c0 chromedriver + 4336064
-15  libsystem_pthread.dylib             0x000000019d99af94 _pthread_start + 136
-16  libsystem_pthread.dylib             0x000000019d995d34 thread_start + 8
-
+                            <td class="col-xs-9" colspan="3"><p>hello hello123 Maarij Karsaz  Time Medicos 740000  Sindh
+WebDriver closed successfully!
 </p>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3">
-                                Total: 1, Pass: 0, Error: 1 -- Duration: 32.05 s
+                                Total: 1, Pass: 1 -- Duration: 36.92 s
                             </td>
                         </tr>
                     </tbody>

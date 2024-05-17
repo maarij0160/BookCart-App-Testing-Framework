@@ -17,7 +17,7 @@ from page import Page
 
 class UnitTestsSearch(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):
+    def setUp(cls):
         cls.driver=WebDriver()
         cls.driver.initializeDriver()
 
@@ -48,7 +48,7 @@ class UnitTestsSearch(unittest.TestCase):
 
      
     @classmethod
-    def tearDownClass(cls):
+    def tearDown(cls):
         cls.driver.closeDriver
 
 if __name__ == "__main__":

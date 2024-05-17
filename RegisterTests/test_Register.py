@@ -20,7 +20,7 @@ import time
 
 class UnitTestsRegister(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):
+    def setUp(cls):
         cls.driver = WebDriver()
 
         cls.driver.initializeDriver()
@@ -62,10 +62,10 @@ class UnitTestsRegister(unittest.TestCase):
     def test_validRegister(self):
 
         self.driver.driver.get(self.driver.url)
-        firstName = df.iloc[8, 0]
-        lastName = df.iloc[8, 1]
-        username = df.iloc[8, 2]
-        password = df.iloc[8, 3]
+        firstName = df.iloc[10, 0]
+        lastName = df.iloc[10, 1]
+        username = df.iloc[10, 2]
+        password = df.iloc[10, 3]
 
         register = Page()
 
@@ -91,7 +91,7 @@ class UnitTestsRegister(unittest.TestCase):
         self.assertEqual(header, "Login")
 
     @classmethod
-    def tearDownClass(cls):
+    def tearDown(cls):
         cls.driver.closeDriver()
 
 

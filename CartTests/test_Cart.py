@@ -17,7 +17,7 @@ from page import Page
 
 class UnitTestsCart(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):
+    def setUp(cls):
         cls.driver=WebDriver()
 
         cls.driver.initializeDriver()
@@ -107,9 +107,10 @@ class UnitTestsCart(unittest.TestCase):
         time.sleep(2)
         cart.goToCart(self.driver)
         
-        time.sleep(2)
+        time.sleep(4)
        
         initial = cart.getCartCount(self.driver)
+        time.sleep(2)
         cart.DecQty(self.driver)
         
         time.sleep(2)
@@ -189,7 +190,7 @@ class UnitTestsCart(unittest.TestCase):
     
      
     @classmethod
-    def tearDownClass(cls):
+    def tearDown(cls):
         cls.driver.closeDriver
 
 if __name__ == "__main__":

@@ -37,31 +37,4 @@ if __name__ == "__main__":
         report_title="All Tests",
     ).run(test_suite)
 
-    # test_cases = [
-    #     UnitTestsCart("test_addtocart"),
-    #     UnitTestsCart("test_incQty"),
-    #     UnitTestsCart("test_decQty"),
-    #     UnitTestsCart("test_deleteItem"),
-    #     UnitTestsCart("test_clearcart"),
-    # ]
-    # for test_case in test_cases:
-    #     test_suite = unittest.TestSuite()
-    #     test_suite.addTest(test_case)
-    #     HtmlTestRunner.HTMLTestRunner(
-    #         combine_reports=True, report_name="Cart Tests", report_title="Cart Tests"
-    #     ).run(test_suite)
-
-    # test_cases = [
-    #     UnitTestsWishList("test_addtoList"),
-    #     UnitTestsWishList("test_removefromList"),
-    #     UnitTestsWishList("test_clearList"),
-    # ]
-
-    # for test_case in test_cases:
-    #     test_suite = unittest.TestSuite()
-    #     test_suite.addTest(test_case)
-    #     HtmlTestRunner.HTMLTestRunner(
-    #         combine_reports=True,
-    #         report_name="Wishlist Tests",
-    #         report_title="Wishlist Tests",
-    #     ).run(test_suite
+    

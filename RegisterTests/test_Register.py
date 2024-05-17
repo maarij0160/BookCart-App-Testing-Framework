@@ -46,7 +46,7 @@ class UnitTestsRegister(unittest.TestCase):
         register.enterRegUsernameField(self.driver, username)
         register.enterRegPasswordField(self.driver, password)
         register.enterConfirmPasswordField(self.driver, password)
-        time.sleep(2)
+        time.sleep(4)
         register.clickGenderCheckbox(self.driver)
         time.sleep(5)
 
@@ -64,8 +64,8 @@ class UnitTestsRegister(unittest.TestCase):
         self.driver.driver.get(self.driver.url)
         firstName = df.iloc[10, 0]
         lastName = df.iloc[10, 1]
-        username = df.iloc[10, 2]
-        password = df.iloc[10, 3]
+        username = df.iloc[13, 2]
+        password = df.iloc[13, 3]
 
         register = Page()
 

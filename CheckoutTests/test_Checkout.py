@@ -58,7 +58,7 @@ class UnitTestsCheckout(unittest.TestCase):
         checkout.enterPincode(self.driver, pincode)
         checkout.enterState(self.driver, state)
 
-        time.sleep(6)
+        time.sleep(8)
         checkout.clickPlaceOrderButton(self.driver)
 
         time.sleep(10)

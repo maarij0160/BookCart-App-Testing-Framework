@@ -1,12 +1,24 @@
-firstName,lastName,username,password,
-Muhammad,Faheem,Maarij69,Temp1234,
-John,Doe,johndoe123,Password123,
-Alice,Smith,asmith87,SecurePass1!,
-Emily,Johnson,emily.johnson,Emailpass456,
-Michael,Williams,mwilliams22,Welcome789,
-Sarah,Brown,sarahb89,Secret123,
-Ahmed,Khan,ahmedkhan99,MyPassWord1,
-Sophia,Miller,sophiamiller,sophiaPass123,
-Daniel,Jackson,danjackson,Password2024,
-Lily,Clark,lilyc12,Pass1234,
-Pookie,Smith, pookiechicken12, Pass1234,
+firstName,lastName,username,password
+Muhammad,Faheem,Maarij69,Temp1234
+John,Doe,johndoe123,Password123
+Alice,Smith,asmith87,SecurePass1!
+Emily,Johnson,emily.johnson,Emailpass456
+Michael,Williams,mwilliams22,Welcome789
+Sarah,Brown,sarahb89,Secret123
+Ahmed,Khan,ahmedkhan99,MyPassWord1
+Sophia,Miller,sophiamiller,sophiaPass123
+Daniel,Jackson,danjackson,Password2024
+Lily,Clark,lilyc12,Pass1234
+Pookie,Smith, pookiechicken1234, Pass1234
+Pookie,Smith, pookiechicken12356, Pass1235
+Pookie,Smith,wow123, Pass1236
+Pookie,Smith,wow124, Pass1237
+Pookie,Smith,wow125, Pass1238
+Pookie,Smith,wow126, Pass1239
+Pookie,Smith,wow127, Pass1240
+Pookie,Smith,wow128, Pass1241
+Pookie,Smith,wow129, Pass1242
+Pookie,Smith,wow130, Pass1243
+Pookie,Smith,wow131, Pass1244
+Pookie,Smith,wow132, Pass1245
+Pookie,Smith,wow133, Pass1246
